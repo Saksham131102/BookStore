@@ -22,7 +22,7 @@ router.get("/:bookId", getPeopleWhoHaveBorrowedABook);
 // Issue a book
 router.post("/add", issueBook);
 
-// Return a book
+// Return the book
 router.delete("/return", returnBook);
 
 export default router;

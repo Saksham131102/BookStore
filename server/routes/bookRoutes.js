@@ -25,7 +25,4 @@ router.get("/range", getBooksInRange);
 // get all the books with both a term and a price range
 router.get("/searchAndRange", getBooksWithTermInRange);
 
-// Add a book
-router.post("/add", addBook);
-
 export default router;
