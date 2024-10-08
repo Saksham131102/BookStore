@@ -113,21 +113,19 @@ export const getPeopleWhoHaveBorrowedABook = async (req, res) => {
   }
 };
 
-// export const getBooksIssuedToAUser = async (req, res) => {
-//   console.log("Hello");
-//   try {
-//     const { userId } = req.params;
-//     console.log(userId);
-//     const transactions = await Transaction.find({ userId }).populate("bookId");
-//     if (!transactions) {
-//       return res.status(404).json({ error: "No transactions found" });
-//     }
-//     res.status(200).json(transactions);
-//   } catch (error) {
-//     console.log("Error in getBooksIssuedToAUser controller", error.message);
-//     return res.status(500).json({ error: "Internal server error" });
-//   }
-// };
+export const getBooksIssuedToAUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const transactions = await Transaction.find({ userId }).populate("bookId");
+    if (!transactions) {
+      return res.status(404).json({ error: "No transactions found" });
+    }
+    res.status(200).json(transactions);
+  } catch (error) {
+    console.log("Error in getBooksIssuedToAUser controller", error.message);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
 
 export const getTransactions = async (req, res) => {
   try {

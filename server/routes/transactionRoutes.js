@@ -4,7 +4,7 @@ import {
   issueBook,
   returnBook,
   getPeopleWhoHaveBorrowedABook,
-  // getBooksIssuedToAUser,
+  getBooksIssuedToAUser,
   getTransactions,
 } from "../controllers/transactionController.js";
 
@@ -14,10 +14,10 @@ const router = express.Router();
 router.get("/", getTransactions);
 
 // get people who have borrowed a book
-router.get("/:bookId", getPeopleWhoHaveBorrowedABook);
+router.get("/users/:bookId", getPeopleWhoHaveBorrowedABook);
 
 // get books issued to a person
-// router.get("/:userId", getBooksIssuedToAUser);
+router.get("/books/:userId", getBooksIssuedToAUser);
 
 // Issue a book
 router.post("/add", issueBook);

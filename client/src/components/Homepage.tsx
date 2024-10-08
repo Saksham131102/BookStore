@@ -5,6 +5,8 @@ import { ThreeDots } from "react-loader-spinner";
 import BookCard from "./BookCard";
 import { Button } from "./ui/button";
 import { IBook } from "@/types";
+import { Search } from "lucide-react";
+import Filters from "./Filters";
 
 const Homepage = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -70,31 +72,45 @@ const Homepage = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center px-36 py-4 bg-white">
+      <div className="flex justify-between items-center px-4 md:px-8 lg:px-36 py-4 bg-white">
         <h1 className="text-xl font-semibold">Books Available</h1>
-        <div className="flex w-2/4 gap-3 items-center">
-          <p>Range</p>
+        <div className="flex w-[250px] md:w-[400px] gap-3 items-center">
+          <p className="ml-3 relative left-11">
+            <Search />
+          </p>
           <Input
-            type="number"
-            className="w-20"
-            value={minVal}
-            onChange={(e) => setMinVal(Number(e.target.value))}
-          />
-          <Input
-            type="number"
-            className="w-20"
-            value={maxVal}
-            onChange={(e) => setMaxVal(Number(e.target.value))}
-          />
-          <Button onClick={handleSearchRange}>Apply</Button>
-          <p className="ml-3">Search</p>
-          <Input
+            className="pl-10"
             type="text"
             placeholder="search book"
             value={searchQuery}
             onChange={handleSearch}
           />
         </div>
+      </div>
+      <div className="justify-between lg:justify-end flex mx-4 md:mx-8 lg:mx-10 gap-10 items-center">
+        <div className="flex items-center gap-1">
+          <p>Rent</p>
+          <Input
+            // type="number"
+            className="w-14"
+            value={minVal}
+            onChange={(e) => setMinVal(Number(e.target.value))}
+          />
+          <Input
+            // type="number"
+            className="w-14"
+            value={maxVal}
+            onChange={(e) => setMaxVal(Number(e.target.value))}
+          />
+          <Button onClick={handleSearchRange}>Apply</Button>
+        </div>
+        <Filters
+          books={books}
+          filteredBooks={filteredBooks}
+          setFilteredBooks={setFilteredBooks}
+          setMaxVal={setMaxVal}
+          setMinVal={setMinVal}
+        />
       </div>
       <div className="flex flex-wrap p-4 gap-2 justify-center">
         {loading ? (

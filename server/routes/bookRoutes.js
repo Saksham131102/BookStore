@@ -11,7 +11,7 @@ import {
 const router = express.Router();
 
 // get a book
-router.get("/:id", getABook);
+router.get("/book/:id", getABook);
 
 // get all the books
 router.get("/", getBooks);
